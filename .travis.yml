@@ -1,10 +1,5 @@
 language: php
 
-php:
-    - 5.3
-    - 5.4
-    - 5.5
-
 notifications:
     email: false
 
@@ -13,10 +8,20 @@ env:
       - TEST_PHP_ARGS="-q"
       - REPORT_EXIT_STATUS=1
 
+matrix:
+  include:
+    # make test always exits 0 pre-5.5
+    - php: 5.3
+      env: BUILD_SCRIPT=run-tests.php
+    - php: 5.4
+      env: BUILD_SCRIPT=run-tests.php
+    - php: 5.5
+      env: BUILD_SCRIPT="make test"
+
 before_script:
     - cd extension
     - phpize
     - ./configure
     - make -j4
 
-script: make test
+script: $BUILD_SCRIPT
