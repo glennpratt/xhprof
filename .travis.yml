@@ -11,7 +11,5 @@ before_script:
     - phpize
     - ./configure
     - make -j4
-    - cd -
-    - locate run-tests.php
 
-script: php run-tests.php extension/
+script: make test
