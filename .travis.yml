@@ -6,6 +6,10 @@ php:
 notifications:
     email: false
 
+env:
+    global:
+      - TEST_PHP_ARGS="-q"
+
 before_script:
     - cd extension
     - phpize
