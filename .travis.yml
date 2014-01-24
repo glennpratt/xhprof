@@ -1,27 +1,29 @@
 language: php
 
 notifications:
-    email: false
+  email: false
+
+php:
+  - 5.5
 
 env:
     global:
       - TEST_PHP_ARGS="-q"
       - REPORT_EXIT_STATUS=1
+      - BUILD_SCRIPT="make test"
 
 matrix:
   include:
-    # make test always exits 0 pre-5.5
+    # 'make test' always exits 0 PHP < 5.5
     - php: 5.3
-      env: BUILD_SCRIPT=run-tests.php
+      env: BUILD_SCRIPT="which php; run-tests.php"
     - php: 5.4
-      env: BUILD_SCRIPT=run-tests.php
-    - php: 5.5
-      env: BUILD_SCRIPT="make test"
+      env: BUILD_SCRIPT="which php; run-tests.php"
 
 before_script:
-    - cd extension
-    - phpize
-    - ./configure
-    - make -j4
+  - cd extension
+  - phpize
+  - ./configure
+  - make -j4
 
 script: $BUILD_SCRIPT
