@@ -28,6 +28,7 @@ before_script:
   - which php
   - export PHP_DIR=$(dirname $(dirname $(phpenv which php)))
   - echo $PHP_DIR
+  - ls -R $PHP_DIR
   - env
   - phpenv which php
   - echo $BUILD_SCRIPT
