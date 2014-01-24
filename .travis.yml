@@ -16,21 +16,15 @@ matrix:
   include:
     # 'make test' always exits 0 PHP < 5.5
     - php: 5.4
-      env: BUILD_SCRIPT="php \$PHP_DIR/lib/php/build/run-tests.php extension/"
+      env: BUILD_SCRIPT="make install; php \$PHP_DIR/lib/php/build/run-tests.php"
     - php: 5.3
-      env: BUILD_SCRIPT="php \$PHP_DIR/lib/php/build/run-tests.php extension/"
+      env: BUILD_SCRIPT="make install; php \$PHP_DIR/lib/php/build/run-tests.php"
 
 before_script:
   - cd extension
   - phpize
   - ./configure
   - make -j4
-  - which php
   - export PHP_DIR=$(dirname $(dirname $(phpenv which php)))
-  - echo $PHP_DIR
-  - ls -R $PHP_DIR
-  - env
-  - phpenv which php
-  - echo $BUILD_SCRIPT
 
 script: eval $BUILD_SCRIPT
