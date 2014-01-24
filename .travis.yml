@@ -15,10 +15,10 @@ env:
 matrix:
   include:
     # 'make test' always exits 0 PHP < 5.5
-    - php: 5.3
-      env: BUILD_SCRIPT="sudo \$PHP_DIR/lib/php/build/run-tests.php extension/"
     - php: 5.4
-      env: BUILD_SCRIPT="sudo \$PHP_DIR/lib/php/build/run-tests.php extension/"
+      env: BUILD_SCRIPT="php \$PHP_DIR/lib/php/build/run-tests.php extension/"
+    - php: 5.3
+      env: BUILD_SCRIPT="php \$PHP_DIR/lib/php/build/run-tests.php extension/"
 
 before_script:
   - cd extension
