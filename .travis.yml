@@ -1,0 +1,17 @@
+language: php
+
+php:
+    - 5.4
+
+notifications:
+    email: false
+
+before_script:
+    - cd extension
+    - phpize
+    - ./configure
+    - make -j4
+    - cd -
+    - locate run-tests.php
+
+script: php run-tests.php extension/
