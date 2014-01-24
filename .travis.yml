@@ -30,5 +30,6 @@ before_script:
   - echo $PHP_DIR
   - env
   - phpenv which php
+  - echo $BUILD_SCRIPT
 
 script: eval $BUILD_SCRIPT
