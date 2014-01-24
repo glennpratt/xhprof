@@ -1,7 +1,9 @@
 language: php
 
 php:
+    - 5.3
     - 5.4
+    - 5.5
 
 notifications:
     email: false
@@ -9,6 +11,7 @@ notifications:
 env:
     global:
       - TEST_PHP_ARGS="-q"
+      - REPORT_EXIT_STATUS=1
 
 before_script:
     - cd extension
